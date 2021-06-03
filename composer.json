@@ -1,0 +1,17 @@
+{
+    "name": "stanislavkls/leadsbot",
+    "description": "Test task",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stainslav K.",
+            "email": "klecov@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
