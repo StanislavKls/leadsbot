@@ -2,10 +2,9 @@
 
 namespace Leadsbot;
 
-require __DIR__ . './vendor/autoload.php';
+require __DIR__ . '/./vendor/autoload.php';
 
 use Leadsbot\Bot;
-use Leadsbot\LeadsApi;
 
 const TOKEN = "1844696370:AAE6l1RtoWWpSfdFi1luzKmpW3k-PaK-yG4";
 
@@ -16,7 +15,4 @@ $message = $data['message']['text'];
 $bot = new Bot(TOKEN);
 $bot->saveLog($data);
 
-
-
-$bot->doIt($chatID, 'Здорово, отец!');
-
+$bot->doIt($message, $chatID);

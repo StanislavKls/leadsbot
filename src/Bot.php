@@ -9,6 +9,10 @@ class Bot
 {
     private $url;
     private $client;
+    private $commands = [
+        '/getCountries' => 'getCountries',
+        '/getUser'      => 'getUser'
+    ];
 
     public function __construct($token)
     {
@@ -26,19 +30,23 @@ class Bot
     }
     public function doIt($command, $id, $arg = []): bool
     {
-        $commands = [
-            '/getCountries' => '$this->getCountries()',
-        ];
-        if (array_key_exists($command, $commands)) {
-            return call_user_func_array($commands[$command], $arg);
+
+        if (array_key_exists($command, $this->commands)) {
+            $exec = $this->commands[$command];
+            return $this->sendMessage($id, $this->$exec());
         } else {
             $this->sendMessage($id, 'Нет такой команды');
             return false;
         }
     }
-    private function getCountries($token)
+    private function getCountries()
     {
-        $api = new LeadsApi($token);
-        
+        $api = new LeadsApi();
+        return $api->getCountries();
+    }
+    private function getUser()
+    {
+        $api = new LeadsApi();
+        return $api->getUser();
     }
 }
