@@ -2,12 +2,18 @@
 
 namespace Leadsbot;
 
-require __DIR__ . './vendor/autoload.php';
+require __DIR__ . '/./vendor/autoload.php';
 
 use Leadsbot\Bot;
 
-$token = "1844696370:AAE6l1RtoWWpSfdFi1luzKmpW3k-PaK-yG4";
+const TOKEN = "1844696370:AAE6l1RtoWWpSfdFi1luzKmpW3k-PaK-yG4";
+$data = json_decode(file_get_contents('php://input'), true);
 
-$bot = new Bot($token);
+$chatID  = $data['message']['chat']['id'];
+$message = $data['message']['text'];
+$bot = new Bot(TOKEN);
+$bot->saveLog($data);
 
-$bot->sendMessage(149019377, 'test');
+
+
+$bot->sendMessage($chatID, 'Здорово, отец!');
