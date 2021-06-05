@@ -26,7 +26,8 @@ class Bot
     }
     public function saveLog($data)
     {
-        file_put_contents('log.txt', print_r($data, true));
+        file_put_contents('log.txt', print_r($data, true), FILE_APPEND);
+        return true;
     }
     public function doIt($command, $id, $arg = []): bool
     {
