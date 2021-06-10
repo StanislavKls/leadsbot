@@ -2,7 +2,6 @@
 
 namespace Leadsbot;
 
-use Illuminate\Support\Arr;
 use Leadsbot\LeadsApi;
 
 class Bot
@@ -11,7 +10,8 @@ class Bot
     private $client;
     private $commands = [
         '/getCountries' => 'getCountries',
-        '/getUser'      => 'getUser'
+        '/getUser'      => 'getUser',
+        '/start'        => 'start'
     ];
 
     public function __construct($token)
@@ -49,5 +49,9 @@ class Bot
     {
         $api = new LeadsApi();
         return $api->getUser();
+    }
+    private function start()
+    {
+        return "Вывод списка стран: /getCountries\nВывод данных пользователя: /getUser";
     }
 }

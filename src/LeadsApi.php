@@ -14,7 +14,6 @@ class LeadsApi
     }
     public function getCountries()
     {
-        
         $response = $this->client->request('GET', 'geo/getCountries', ['query' => ['token' => $this->params['leads']]]);
         $data = json_decode($response->getBody()->getContents(), true);
         $country = array_map(fn($item) => $item['name'], $data['data']);
